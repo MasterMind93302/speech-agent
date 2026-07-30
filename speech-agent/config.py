@@ -4,7 +4,7 @@ import os
 def reset():
     print("preparing to reset...")
     sys_prompt = input("enter a system prompt (leave blank for default): ")
-    message_history = open("message_history.txt", "w")
+    message_history = open("speech-agent/message_history.txt", "w")
     message_history.write("")
     if sys_prompt == "":
         message = {
@@ -22,7 +22,7 @@ def reset():
 
 def install_requirements():
     print("preparing to install requirements...")
-    os.system("pip install -r requirements.txt")
+    os.system("pip install -r speech-agent/requirements.txt")
 
 
 def main():

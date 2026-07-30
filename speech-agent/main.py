@@ -6,7 +6,7 @@ import winsound
 
 #functions
 def create_client(): #create an ollama cloud client
-    key = open("api_key.txt", "r").read().strip()
+    key = open("speech-agent/api_key.txt", "r").read().strip()
     client = ollama.Client(
     host="https://ollama.com",
     headers={'Authorization': 'Bearer ' + key}
@@ -21,7 +21,7 @@ def get_client_response(client, input): #get response from an AI agent
 
     messages = []
     try:
-        with open("message_history.txt", "r", encoding="utf-8") as fh:
+        with open("speech-agent/message_history.txt", "r", encoding="utf-8") as fh:
             data = fh.read().strip()
             if data:
                 try:
@@ -42,7 +42,7 @@ def get_client_response(client, input): #get response from an AI agent
     messages.append(user_message)
 
     try:
-        with open("message_history.txt", "w", encoding="utf-8") as fh:
+        with open("speech-agent/message_history.txt", "w", encoding="utf-8") as fh:
             json.dump(messages, fh, ensure_ascii=False, indent=2)
     except Exception:
         winsound.PlaySound("SystemHand", winsound.SND_ALIAS)
@@ -152,7 +152,7 @@ def main():
 
         history.append({"role": "bot", "content": fulltext})
         try:
-            with open("message_history.txt", "w", encoding="utf-8") as fh:
+            with open("speech-agent/message_history.txt", "w", encoding="utf-8") as fh:
                 json.dump(history, fh, ensure_ascii=False, indent=2)
         except Exception:
             winsound.PlaySound("SystemHand", winsound.SND_ALIAS)
