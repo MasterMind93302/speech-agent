@@ -1,5 +1,5 @@
 # Speech Agent
-An AI assistant that runs in the background and takes commands as speech and talks back to you, using SpeechRecognition and pyttsx3!
+An AI assistant that runs in the background, takes commands as speech and talks back to you, using SpeechRecognition and pyttsx3!
 
 - AI from ollama cloud, accessed using python's ollama module
 - speech-to-text recognition and text-to-speech to allow easy conversation
