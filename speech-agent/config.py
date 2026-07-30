@@ -7,10 +7,10 @@ def reset():
     message_history = open("speech-agent/message_history.txt", "w")
     message_history.write("")
     if sys_prompt == "":
-        message = {
+        message = [{
                 "role": "system",
                 "content": "You are a helpful AI assistant. Respond clearly and use the conversation history when appropriate. Respond with no formatting, as your response must be interpretted by text to speech clearly."
-            }
+            }]
     else:
         message = [{
                 "role": "system",
