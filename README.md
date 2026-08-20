@@ -1,12 +1,13 @@
-# Speech Agent
-An AI assistant that runs in the background, takes commands as speech and talks back to you, using SpeechRecognition and pyttsx3!
+# Speech-Agent
+A framework to turn your favourite AI models into a speech-based assistant, allowing it to take commands as speech and talk back to you, using the SpeechRecognition and pyttsx3 python modules!
 
-- AI from ollama cloud, accessed using python's ollama module
+## Features
+- AI from Ollama cloud, accessed using python's ollama module
 - speech-to-text recognition and text-to-speech to allow easy conversation
 - 'asleep' and 'awake' modes control when the AI is listening
 - config script allows for greater control and customisation
 - message history is saved to allow conversations to be picked back up, but can also be cleared using config
 
-NOTE: In order to use this program, you must have an existing ollama account and API key (API key file can be found in speech-agent folder). For security reasons, I will not be providing an API key. This program is also only designed and tested for windows, so there is no guarantee that it will run on other operating systems.
+NOTE: In order to use Speech-Agent, you must have an existing Ollama account and cloud API key. Only AI models accessible via ollama can be used by this program, however feel free to fork this project and alter it to your liking, as long as credit is given to the original developer (me).
 
 Suggest features or report issues in the issues tab!
