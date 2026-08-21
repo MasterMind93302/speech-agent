@@ -3,6 +3,8 @@ import ollama
 import speech_recognition
 import json
 import winsound
+import dotenv
+import config
 
 #functions
 def create_client(): #create an ollama cloud client
@@ -61,7 +63,7 @@ def wake_agent(): #wake the AI agent using the wake phrase 'wake up'
             text = recogniser.recognize_google(audio)
             text = text.lower()
             print(f"user said: {text}")
-            if text == "wake up":
+            if text == wake_phrase:
                 winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS)
                 print("Wake phrase detected.")
                 engine = pyttsx3.init()
@@ -94,11 +96,11 @@ def get_speech_as_text(): #get user speech as text
 
     except speech_recognition.UnknownValueError:
         print("unable to understand, please speak again.")
-        return "RETRY"
+        return "RETRY_"
     except Exception as e:
         winsound.PlaySound("SystemHand", winsound.SND_ALIAS)
         print(e)
-        return "RETRY"
+        return "RETRY_"
 
 
 def text_to_speech(input): #output inputted text as speech
@@ -112,22 +114,22 @@ def main():
     client = create_client()
     while True:
         text = get_speech_as_text()
-        if text == "go to sleep":
+        if text == sleep_phrase:
             winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS)
             print("Sleep phrase detected.")
             engine = pyttsx3.init()
             engine.say("agent asleep")
             engine.runAndWait()
-            return "SLEEP"
-        while text == "RETRY":
+            return "SLEEP_"
+        while text == "RETRY_":
             text = get_speech_as_text()
-            if text == "go to sleep":
+            if text == sleep_phrase:
                 winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS)
                 print("Sleep phrase detected.")
                 engine = pyttsx3.init()
                 engine.say("agent asleep")
                 engine.runAndWait()
-                return "SLEEP"
+                return "SLEEP_"
 
         response = get_client_response(client, text)
         fulltext = ""
@@ -161,13 +163,20 @@ def main():
         text_to_speech(fulltext)
 
 if __name__ == "__main__":
+    config.install_requirements()
     while True:
+        global wake_phrase, sleep_phrase
+        wake_phrase, sleep_phrase = config.fetch_phrases()
+        if wake_phrase == "":
+            wake_phrase = "wake up"
+        if sleep_phrase == "":
+            sleep_phrase = "go to sleep"
         try:
             awake = wake_agent()
             if awake is True:
                 print("Agent is awake. Listening for user input...")
                 status = main()
-                if status == "SLEEP":
+                if status == "SLEEP_":
                     print("Agent is asleep. Listening for wake phrase...")
                     awake = False   
                     continue

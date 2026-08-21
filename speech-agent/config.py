@@ -24,11 +24,33 @@ def install_requirements():
     print("preparing to install requirements...")
     os.system("pip install -r speech-agent/requirements.txt")
 
+def customise():
+    wake_phrase = input("customise wake phrase (press enter to skip): ")
+    if wake_phrase != "":
+        with open("wake_phrase.txt", "w") as f:
+            f.write(wake_phrase)
+        print(f"wake phrase set to: {wake_phrase}")
+    sleep_phrase = input("customise sleep phrase (press enter to skip): ")
+    if sleep_phrase != "":
+        with open("sleep_phrase.txt", "w") as f:
+            f.write(sleep_phrase)
+        print(f"sleep phrase set to: {sleep_phrase}")
+    print("customisation complete.")
+    exit()
+
+def fetch_phrases():
+    with open("wake_phrase.txt", "r") as f:
+        wake_phrase = f.read().strip()
+
+    with open("sleep_phrase.txt", "r") as f:
+        sleep_phrase = f.read().strip()
+
+    return wake_phrase, sleep_phrase
 
 def main():
     valid = False
     while not valid:
-        command = input("Enter a command (reset, install-reqs, exit): ")
+        command = input("Enter a command (reset, install-reqs, exit, customise): ")
         if command == "reset":
             reset()
             valid = True
@@ -39,6 +61,9 @@ def main():
                 valid = True
                 print("exiting...")
                 exit()
+        elif command == "customise":
+            customise()
+            valid = True
         else:
             print(f"{command} is not a valid command.")
 
