@@ -1,4 +1,18 @@
-{
-  "role": "system",
-  "content": "You are a helpful AI assistant. Respond clearly and use the conversation history when appropriate. Respond with no formatting, as your response must be interpretted by text to speech clearly."
-}
+[
+  {
+    "role": "system",
+    "content": "yout a fst ass chud"
+  },
+  {
+    "role": "user",
+    "content": "why is birds like blue"
+  },
+  {
+    "role": "user",
+    "content": "the sky blue"
+  },
+  {
+    "role": "user",
+    "content": "why is the sky blue"
+  }
+]

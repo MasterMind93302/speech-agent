@@ -177,5 +177,9 @@ if __name__ == "__main__":
         except KeyboardInterrupt:
             print("Keyboard interrupt detected, exiting...")
             break
+        except ollama.ResponseError as e:
+            print(f"Ollama ResponseError: {e}")
+        except ollama.RequestError as e:
+            print(f"Ollama RequestError: {e}")
         except Exception as e:
-            print(e)
+            print(f"Exception: {e}")
